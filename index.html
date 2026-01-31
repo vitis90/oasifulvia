@@ -110,7 +110,7 @@
         function apriCancello() {
             const pin = prompt("Inserisci il codice di accesso ospite:");
             if (pin === "1234") { // Cambia con il tuo PIN
-                // Qui va l'URL del Sonoff/IFTTT
+                const webhookUrl = "https://maker.ifttt.com/trigger/apri_cancello/with/key/cC7PfBZDIsH5AJVp7C7eAG";
                 alert("Richiesta inviata. Il cancello si aprirà a breve.");
             } else if (pin !== null) {
                 alert("Codice errato. Riprova o contatta Marco.");
