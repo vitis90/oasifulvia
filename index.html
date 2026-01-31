@@ -10,6 +10,7 @@
             --primary: #2c3e50;
             --gold: #d4af37;
             --light: #f9f9f9;
+            --stripe: #635bff;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -19,6 +20,22 @@
             color: var(--primary);
             text-align: center;
         }
+        /* Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: var(--primary);
+            color: white; padding: 15px;
+            text-align: center; font-size: 0.8rem;
+            z-index: 1000; display: none;
+        }
+        #cookie-banner button {
+            background: var(--gold);
+            border: none; color: white;
+            padding: 5px 15px; margin-left: 15px;
+            border-radius: 5px; cursor: pointer; font-weight: 600;
+        }
+        /* Header */
         .header {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
@@ -27,7 +44,8 @@
             padding: 80px 20px;
         }
         h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 0; }
-        .container { max-width: 600px; margin: -40px auto 40px; padding: 20px; }
+        
+        .container { max-width: 600px; margin: -40px auto 40px; padding: 0 20px; }
         .card {
             background: white;
             border-radius: 15px;
@@ -46,10 +64,12 @@
             transition: 0.3s;
             border: none;
             cursor: pointer;
+            box-sizing: border-box;
         }
-        .btn-stripe { background: #635bff; color: white; }
-        .btn-stripe:hover { background: #4b43d3; }
+        .btn-stripe { background: var(--stripe); color: white; }
+        .btn-gold { background: var(--gold); color: white; }
         
+        /* Bank Info Box */
         .bank-info {
             background: #f0f4f8;
             padding: 15px;
@@ -57,44 +77,61 @@
             font-size: 0.9rem;
             text-align: left;
             border-left: 4px solid var(--gold);
-            display: none; /* Inizialmente nascosto */
+            display: none;
+            margin-top: 15px;
         }
-        .footer { font-size: 0.8rem; color: #777; padding: 20px; }
+        .copy-btn {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            background: #ddd;
+            border-radius: 4px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        .footer { font-size: 0.8rem; color: #777; padding: 40px 20px; }
+        .footer a { color: #777; text-decoration: none; margin: 0 5px; }
     </style>
 </head>
 <body>
+
     <div id="cookie-banner">
-    Questo sito utilizza solo cookie tecnici per garantire il funzionamento dei pagamenti Stripe. 
-    Continuando la navigazione, accetti il loro utilizzo.
-    <button onclick="acceptCookies()">Accetto</button>
-</div>
+        Questo sito utilizza solo cookie tecnici per i pagamenti Stripe. 
+        <button onclick="acceptCookies()">Accetto</button>
+    </div>
+
     <div class="header">
         <h1>Oasi Fulvia</h1>
-        <p>Benvenuto nella tua camera a Ferrara</p>
+        <p>Benvenuto a Ferrara</p>
     </div>
 
     <div class="container">
         <div class="card">
             <h3>Prenota il tuo soggiorno</h3>
-            <p>Scegli il metodo di pagamento preferito:</p>
+            <p>Scegli il metodo di pagamento:</p>
             
-            <a href="IL_TUO_LINK_STRIPE" class="btn btn-stripe">Paga con Carta o Google Pay</a>
+            <a href="https://buy.stripe.com/6oU4gr1P015TcQfaOu48000" class="btn btn-stripe">
+                💳 Paga ora con Carta / Google Pay
+            </a>
             
-            <button onclick="toggleBank()" class="btn" style="background: var(--gold); color: white;">
-                Mostra coordinate Bonifico
+            <button onclick="toggleBank()" class="btn btn-gold">
+                🏦 Mostra coordinate Bonifico
             </button>
 
             <div id="bankDetails" class="bank-info">
-                <strong>Intestatario:</strong> Marco<br>
-                <strong>IBAN:</strong> IT00 X 0000 00000 0000 0000 0000<br>
-                <strong>Causale:</strong> Prenotazione Oasi Fulvia<br>
-                <small>*Invia la distinta su WhatsApp per conferma immediata.</small>
+                <strong>Intestatario:</strong> Marco <br>
+                <strong>IBAN:</strong> <span id="ibanText">IT00 X 0000 00000 0000 0000 0000</span> 
+                <span class="copy-btn" onclick="copyText('ibanText')">Copia</span><br>
+                <strong>Causale:</strong> <span id="causaleText">Prenotazione Oasi Fulvia</span>
+                <span class="copy-btn" onclick="copyText('causaleText')">Copia</span><br>
+                <p style="margin-top:10px; font-size: 0.8rem; color: #555;">
+                    *Invia la distinta su WhatsApp per conferma immediata.
+                </p>
             </div>
         </div>
 
         <div class="card">
             <h3>Comandi Camera</h3>
-            <p>Accesso rapido ai servizi dell'Oasi</p>
+            <p>Servizi esclusivi per gli ospiti</p>
             <button onclick="apriCancello()" class="btn" style="background: white; border: 2px solid var(--primary); color: var(--primary);">
                 🔑 Apri Cancello Principale
             </button>
@@ -102,65 +139,50 @@
     </div>
 
     <div class="footer">
-        &copy; 2026 Oasi Fulvia - Villa Fulvia, Ferrara
+        &copy; 2026 Oasi Fulvia - Villa Fulvia, Ferrara<br><br>
         <a href="privacy.html">Privacy Policy</a> | 
         <a href="cookies.html">Cookie Policy</a> | 
         <a href="termini.html">Termini e Condizioni</a>
     </div>
 
-    /* Stile Cookie Banner */
-#cookie-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #2c3e50;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    font-size: 0.8rem;
-    z-index: 1000;
-    display: none; /* Nascosto di default */
-}
-#cookie-banner button {
-    background: #d4af37;
-    border: none;
-    color: white;
-    padding: 5px 15px;
-    margin-left: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
     <script>
+        // Gestione Cookies
         function acceptCookies() {
-    localStorage.setItem('cookieConsent', 'true');
-    document.getElementById('cookie-banner').style.display = 'none';
-}
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
 
-window.onload = function() {
-    if (!localStorage.getItem('cookieConsent')) {
-        document.getElementById('cookie-banner').style.display = 'block';
-    }
-};
+        window.onload = function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        };
+
+        // Toggle Bonifico
         function toggleBank() {
             var x = document.getElementById("bankDetails");
             x.style.display = (x.style.display === "none" || x.style.display === "") ? "block" : "none";
         }
 
+        // Funzione Copia
+        function copyText(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copiato negli appunti!");
+            });
+        }
+
+        // Funzione Cancello
         function apriCancello() {
             const pin = prompt("Inserisci il codice di accesso ospite:");
-            if (pin === "1234") { // Cambia con il tuo PIN
+            if (pin === "1234") { 
                 const webhookUrl = "https://maker.ifttt.com/trigger/apri_cancello/with/key/cC7PfBZDIsH5AJVp7C7eAG";
+                fetch(webhookUrl, { mode: 'no-cors' }); // Invia il comando
                 alert("Richiesta inviata. Il cancello si aprirà a breve.");
             } else if (pin !== null) {
-                alert("Codice errato. Riprova o contatta Marco.");
+                alert("Codice errato.");
             }
         }
     </script>
-    <a href="https://buy.stripe.com/6oU4gr1P015TcQfaOu48000" class="btn" style="background: #635bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
-    Prenota e Paga Ora
-</a>
 </body>
 </html>
