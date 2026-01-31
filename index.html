@@ -3,54 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oasi Fulvia - B&B a Ferrara</title>
+    <title>Oasi Fulvia | Guest Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; color: #333; line-height: 1.6; }
-        header { background: #2d5a27; color: white; padding: 2rem text-align: center; }
-        .hero { background: #f4f4f4; padding: 3rem 1rem; text-align: center; }
-        .container { max-width: 800px; margin: auto; padding: 1rem; }
-        .feature { display: flex; align-items: center; margin-bottom: 2rem; }
-        .btn { background: #25d366; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; }
-        img { max-width: 100%; border-radius: 10px; }
-        .price { font-size: 1.5rem; color: #2d5a27; font-weight: bold; }
+        :root {
+            --primary: #2c3e50;
+            --gold: #d4af37;
+            --light: #f9f9f9;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--primary);
+            text-align: center;
+        }
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 20px;
+        }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 0; }
+        .container { max-width: 600px; margin: -40px auto 40px; padding: 20px; }
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-stripe { background: #635bff; color: white; }
+        .btn-stripe:hover { background: #4b43d3; }
+        
+        .bank-info {
+            background: #f0f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: left;
+            border-left: 4px solid var(--gold);
+            display: none; /* Inizialmente nascosto */
+        }
+        .footer { font-size: 0.8rem; color: #777; padding: 20px; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Oasi Fulvia</h1>
-    <p>Il tuo rifugio verde alle porte di Ferrara</p>
-</header>
-
-<section class="hero">
-    <div class="container">
-        <h2>Pace, Natura e Comfort</h2>
-        <p>Una casa indipendente a Villa Fulvia, circondata dal silenzio e con vista sul nostro laghetto privato.</p>
-        <div class="price">Camera Doppia da €60/notte</div>
-        <br>
-        <a href="https://wa.me/IL_TUO_NUMERO" class="btn">Prenota su WhatsApp</a>
+    <div class="header">
+        <h1>Oasi Fulvia</h1>
+        <p>Benvenuto nella tua camera pilota a Ferrara</p>
     </div>
-</section>
 
-<div class="container">
-    <h3>Perché sceglierci?</h3>
-    <ul>
-        <li><strong>Posizione Strategica:</strong> A Villa Fulvia, fuori dal caos ma a 5 minuti dal centro.</li>
-        <li><strong>Natura:</strong> Accesso al giardino e vista relax sul laghetto.</li>
-        <li><strong>Autonomia:</strong> Parcheggio gratuito e self check-in domotico.</li>
-    </ul>
+    <div class="container">
+        <div class="card">
+            <h3>Prenota il tuo soggiorno</h3>
+            <p>Scegli il metodo di pagamento preferito:</p>
+            
+            <a href="IL_TUO_LINK_STRIPE" class="btn btn-stripe">Paga con Carta o Google Pay</a>
+            
+            <button onclick="toggleBank()" class="btn" style="background: var(--gold); color: white;">
+                Mostra coordinate Bonifico
+            </button>
 
-    <h3>La Camera Pilota</h3>
-    <p>Letto matrimoniale comfort, Wi-Fi ultra-veloce, aria condizionata e bagno privato. Ideale per il tuo test di relax a Ferrara.</p>
-</div>
+            <div id="bankDetails" class="bank-info">
+                <strong>Intestatario:</strong> Marco<br>
+                <strong>IBAN:</strong> IT00 X 0000 00000 0000 0000 0000<br>
+                <strong>Causale:</strong> Prenotazione Oasi Fulvia<br>
+                <small>*Invia la distinta su WhatsApp per conferma immediata.</small>
+            </div>
+        </div>
 
-<footer style="text-align: center; padding: 2rem; background: #eee;">
-    <p>&copy; 2026 Oasi Fulvia - Ferrara (FE)</p>
-</footer>
+        <div class="card">
+            <h3>Comandi Camera</h3>
+            <p>Accesso rapido ai servizi dell'Oasi</p>
+            <button onclick="apriCancello()" class="btn" style="background: white; border: 2px solid var(--primary); color: var(--primary);">
+                🔑 Apri Cancello Principale
+            </button>
+        </div>
+    </div>
 
-<a href="https://buy.stripe.com/6oU4gr1P015TcQfaOu48000" class="btn" style="background: #635bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+    <div class="footer">
+        &copy; 2026 Oasi Fulvia - Villa Fulvia, Ferrara
+    </div>
+
+    <script>
+        function toggleBank() {
+            var x = document.getElementById("bankDetails");
+            x.style.display = (x.style.display === "none" || x.style.display === "") ? "block" : "none";
+        }
+
+        function apriCancello() {
+            const pin = prompt("Inserisci il codice di accesso ospite:");
+            if (pin === "1234") { // Cambia con il tuo PIN
+                // Qui va l'URL del Sonoff/IFTTT
+                alert("Richiesta inviata. Il cancello si aprirà a breve.");
+            } else if (pin !== null) {
+                alert("Codice errato. Riprova o contatta Marco.");
+            }
+        }
+    </script>
+    <a href="https://buy.stripe.com/6oU4gr1P015TcQfaOu48000" class="btn" style="background: #635bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
     Prenota e Paga Ora
 </a>
-    
 </body>
 </html>
