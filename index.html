@@ -63,7 +63,11 @@
     </style>
 </head>
 <body>
-
+    <div id="cookie-banner">
+    Questo sito utilizza solo cookie tecnici per garantire il funzionamento dei pagamenti Stripe. 
+    Continuando la navigazione, accetti il loro utilizzo.
+    <button onclick="acceptCookies()">Accetto</button>
+</div>
     <div class="header">
         <h1>Oasi Fulvia</h1>
         <p>Benvenuto nella tua camera pilota a Ferrara</p>
@@ -104,7 +108,42 @@
         <a href="LINK_TERMINI">Termini e Condizioni</a>
     </div>
 
+    /* Stile Cookie Banner */
+#cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 0.8rem;
+    z-index: 1000;
+    display: none; /* Nascosto di default */
+}
+#cookie-banner button {
+    background: #d4af37;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    margin-left: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
     <script>
+        function acceptCookies() {
+    localStorage.setItem('cookieConsent', 'true');
+    document.getElementById('cookie-banner').style.display = 'none';
+}
+
+window.onload = function() {
+    if (!localStorage.getItem('cookieConsent')) {
+        document.getElementById('cookie-banner').style.display = 'block';
+    }
+};
         function toggleBank() {
             var x = document.getElementById("bankDetails");
             x.style.display = (x.style.display === "none" || x.style.display === "") ? "block" : "none";
