@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Oasi Fulvia</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 40px 20px; background: #f4f7f6; }
+        .content { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #2c3e50; border-bottom: 2px solid #d4af37; padding-bottom: 10px; }
+        h2 { color: #2c3e50; margin-top: 30px; font-size: 1.2rem; }
+        p, li { font-size: 0.95rem; color: #555; }
+        .footer-link { margin-top: 30px; display: block; color: #d4af37; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Informativa sulla Privacy (GDPR)</h1>
+        <p>Ultimo aggiornamento: Gennaio 2026</p>
+
+        <h2>1. Titolare del Trattamento</h2>
+        <p>Il Titolare del trattamento dei dati è <strong>Marco [Tuo Cognome]</strong>, responsabile per la gestione della struttura ricettiva sita in Villa Fulvia, Ferrara. Per qualsiasi domanda, puoi contattarmi all'indirizzo email associato alla prenotazione.</p>
+
+        <h2>2. Dati raccolti e Finalità</h2>
+        <p>Raccogliamo solo i dati strettamente necessari per le seguenti finalità:</p>
+        <ul>
+            <li><strong>Gestione Prenotazioni:</strong> Nome, cognome ed email per confermare il soggiorno.</li>
+            <li><strong>Obblighi di Pubblica Sicurezza:</strong> Dati del documento d'identità per la comunicazione obbligatoria al portale "Alloggiati Web" della Polizia di Stato (TULPS).</li>
+            <li><strong>Pagamenti:</strong> Elaborazione della transazione tramite Stripe. Non memorizziamo i dati della tua carta di credito sui nostri server.</li>
+        </ul>
+
+        <h2>3. Servizi di Terze Parti (Trasferimento Dati)</h2>
+        <p>Per il funzionamento del sito, i dati possono essere trattati da partner esterni affidabili:</p>
+        <ul>
+            <li><strong>GitHub Pages:</strong> Ospita il sito web e potrebbe raccogliere log di sistema (IP) per motivi di sicurezza.</li>
+            <li><strong>Stripe Inc.:</strong> Gestisce i pagamenti elettronici. Stripe aderisce ai protocolli di sicurezza internazionali e tratta i dati negli USA secondo Clausole Contrattuali Standard.</li>
+            <li><strong>Servizi Domotici:</strong> L'invio dei comandi di apertura (es. IFTTT/Sonoff) avviene in forma anonima o tramite codici temporanei.</li>
+        </ul>
+
+        <h2>4. Cookie Policy
